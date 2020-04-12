@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using ErrorHandlingMiddlewareSample.Exceptions;
+using ErrorHandlingMiddlewareSample.Model;
 using ErrorHandlingMiddlewareSample.Services;
 using Microsoft.AspNetCore.Mvc;
 

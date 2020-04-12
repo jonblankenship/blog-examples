@@ -7,6 +7,10 @@ namespace ErrorHandlingMiddlewareSample.Services
 {
     public interface IStocksService
     {
+        /// <summary>
+        /// Returns all <see cref="Stock"/>s
+        /// </summary>
+        /// <returns>An enumerable of <see cref="Stock"/>s</returns>
         public IEnumerable<Stock> GetAll();
 
         /// <summary>
