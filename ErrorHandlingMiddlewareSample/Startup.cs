@@ -1,6 +1,7 @@
 using ErrorHandlingMiddlewareSample.Middleware;
 using ErrorHandlingMiddlewareSample.Services;
 using Excepticon.AspNetCore;
+using Excepticon.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,8 @@ namespace ErrorHandlingMiddlewareSample
             services.AddControllers();
 
             services.AddScoped<IStocksService, StocksService>();
+
+            services.AddExcepticon();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

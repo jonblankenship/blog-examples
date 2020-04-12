@@ -3,7 +3,9 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ErrorHandlingMiddlewareSample.Exceptions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 
 namespace ErrorHandlingMiddlewareSample.Middleware
 {
@@ -16,7 +18,7 @@ namespace ErrorHandlingMiddlewareSample.Middleware
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, IWebHostEnvironment env)
         {
             try
             {
@@ -24,11 +26,11 @@ namespace ErrorHandlingMiddlewareSample.Middleware
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex, env);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception, IWebHostEnvironment env)
         {
             HttpStatusCode status;
             string message;
@@ -49,7 +51,8 @@ namespace ErrorHandlingMiddlewareSample.Middleware
             {
                 status = HttpStatusCode.InternalServerError;
                 message = exception.Message;
-                stackTrace = exception.StackTrace;
+                if (env.IsEnvironment("Development"))
+                    stackTrace = exception.StackTrace;
             }
 
             var result = JsonSerializer.Serialize(new { error = message, stackTrace });
