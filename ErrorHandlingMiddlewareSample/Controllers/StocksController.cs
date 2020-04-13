@@ -21,7 +21,7 @@ namespace ErrorHandlingMiddlewareSample.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var stocks = _stocksService.GetAll();
+            var stocks = _stocksService.GetAllStocks();
             return new OkObjectResult(stocks);
         }
 
@@ -29,7 +29,7 @@ namespace ErrorHandlingMiddlewareSample.Controllers
         [Route("{stockId}")]
         public IActionResult GetById(Guid stockId)
         {
-            var stock = _stocksService.Get(stockId);
+            var stock = _stocksService.GetStock(stockId);
             return new OkObjectResult(stock);
         }
     }
