@@ -1,0 +1,10 @@
+{
+  "TwitterOptions": {
+    "WebhookEnvironment": "dev",
+    "ConsumerKey": "YOUR CONSUMERKEY HERE",
+    "ConsumerSecret": "YOUR CONSUMERSECRET HERE",
+    "AccessToken": "YOUR ACCESSTOKEN HERE",
+    "AccessTokenSecret": "YOUR ACCESSTOKENSECRET HERE",
+    "WebhookCallbackBaseUrl": "https://f0b7246ff41d.ngrok.io"
+  }
+}
